@@ -1,6 +1,7 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import "normalize.css"     
+import "./vendor/normalize.css";
+import "./vendor/fonts.css";
 import "./pages/index.css"; 
 import App from './App.jsx'
 

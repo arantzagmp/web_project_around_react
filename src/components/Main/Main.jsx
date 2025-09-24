@@ -1,10 +1,11 @@
 import { useState } from "react";
-import Popup from "./Popup/Popup";          
-import ImagePopup from "./Popup/ImagePopup"; 
+import Popup from "./Popup/Popup";
+import ImagePopup from "./Popup/ImagePopup";
 import Card from "../Card";
+
 import NewCardForm from "../form/NewCard";
-import EditAvatar from "../form/EditAvatar";
-import EditProfile from "../form/EditProfile";
+import EditProfileForm from "../form/EditProfileForm";
+import EditAvatarForm from "../form/EditAvatarForm";
 
 const cards = [
   {
@@ -25,26 +26,22 @@ const cards = [
   },
 ];
 
-console.log(cards);
-
 export function Main() {
-  const [popup, setPopup] = useState(null);
+  const [popup, setPopup] = useState(null); // { title, children } | null
+
+  // Popup de imagen
   const [selectedCard, setSelectedCard] = useState(null);
   const [isImageOpen, setIsImageOpen] = useState(false);
 
+  // Objetos de popup (children = formularios puros)
   const newCardPopup = { title: "Nuevo lugar", children: <NewCardForm /> };
-  const editProfilePopup = { title: "Editar perfil", children: <EditProfile /> };
-  const editAvatarPopup = { title: "Cambiar foto de perfil", children: <EditAvatar /> };
+  const editProfilePopup = { title: "Editar perfil", children: <EditProfileForm /> };
+  const editAvatarPopup = { title: "Cambiar foto de perfil", children: <EditAvatarForm /> };
 
-  function handleOpenPopup(popup) {
-    setPopup(popup);
-  }
+  function handleOpenPopup(cfg) { setPopup(cfg); }
+  function handleClosePopup() { setPopup(null); }
 
-  function handleClosePopup() {
-    setPopup(null);
-  }
-
-function handleOpenImage(card) {
+  function handleOpenImage(card) {
     setSelectedCard({ name: card.name, image: card.link, id: card._id });
     setIsImageOpen(true);
   }
@@ -91,21 +88,26 @@ function handleOpenImage(card) {
       </button>
 
       <ul className="elements">
-  {cards.map((c) => (
-    <Card
-      key={c._id}
-      card={c}
-      handleOpenPopup={(img) => handleOpenImage(img)}
-      onDelete={() => {}}
-      onLike={() => {}}
-    />
-  ))}
-</ul>
-      {popup && (
-        <Popup onClose={handleClosePopup} title={popup.title}>
-          {popup.children}
-        </Popup>
-      )}
+        {cards.map((c) => (
+          <Card
+            key={c._id}
+            card={c}
+            handleOpenPopup={(imgObj) => {
+              // si Card ya te manda {name, image, id} úsalo directo:
+              setSelectedCard(imgObj);
+              setIsImageOpen(true);
+            }}
+            onDelete={() => {}}
+            onLike={() => {}}
+          />
+        ))}
+      </ul>
+
+     <Popup onClose={handleClosePopup} title={popup?.title} isOpen={Boolean(popup)}>
+  {popup?.children}
+</Popup>
+
+      {/* Popup de imagen */}
       <ImagePopup card={selectedCard} isOpen={isImageOpen} onClose={handleCloseImage} />
     </>
   );
