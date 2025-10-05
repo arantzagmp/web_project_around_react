@@ -1,45 +1,60 @@
-export default function EditProfileForm({ onSubmit }) {
+import { useState, useContext, useEffect } from "react";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
+
+export default function EditProfileForm() {
+  const { currentUser, handleUpdateUser } = useContext(CurrentUserContext);
+
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
+
+  useEffect(() => {
+    if (currentUser) {
+      setName(currentUser.name ?? "");
+      setDescription(currentUser.about ?? "");
+    }
+  }, [currentUser]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit?.(Object.fromEntries(new FormData(e.currentTarget)));
+    handleUpdateUser({ name, about: description });
   };
 
   return (
-    <form className="popup__form" noValidate onSubmit={handleSubmit}>
-      <div className="popup__field">
+    <form className="popup__form" name="profile-form" id="edit-profile-form" noValidate onSubmit={handleSubmit}>
+      <label className="popup__label">
         <input
-          type="text"
-          id="name"
-          name="name"
-          className="popup__input"
-          placeholder="Nombre"
-          minLength={2}
-          maxLength={40}
+          className="popup__input popup__input_type_name"
+          id="owner-name"
+          maxLength="40"
+          minLength="2"
+          name="userName"
+          placeholder="Name"
           required
-          autoComplete="name"
+          type="text"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
         />
-        <span className="popup__error name-error"></span>
-        <div className="popup__input-line"></div>
-      </div>
+        <span className="popup__error" id="owner-name-error"></span>
+      </label>
 
-      <div className="popup__field">
+      <label className="popup__label">
         <input
-          type="text"
-          id="about"
-          name="about"
-          className="popup__input"
-          placeholder="Acerca de mí"
-          minLength={2}
-          maxLength={200}
+          className="popup__input popup__input_type_description"
+          id="owner-description"
+          maxLength="200"
+          minLength="2"
+          name="userDescription"
+          placeholder="About me"
           required
-          autoComplete="off"
+          type="text"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
         />
-        <span className="popup__error about-error"></span>
-        <div className="popup__input-line"></div>
-      </div>
+        <span className="popup__error" id="owner-description-error"></span>
+      </label>
 
-      <button type="submit" className="popup__submit-button">
-        <span className="popup__submit-button-text">Guardar</span>
+      <button className="button popup__button" type="submit">
+        Save
       </button>
     </form>
   );
