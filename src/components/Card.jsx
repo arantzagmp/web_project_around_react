@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import CurrentUserContext from "../../contexts/CurrentUserContext";
+import CurrentUserContext from "../contexts/CurrentUserContext";
 
 export default function Card({ card, isLiked, handleOpenPopup, onCardDelete, onCardLike }) {
   if (!card) return null;
@@ -8,9 +8,9 @@ export default function Card({ card, isLiked, handleOpenPopup, onCardDelete, onC
 
   const imageComponent = { id: card._id, name: card.name, image: card.link };
 
-  const cardLikeButtonClassName = `card__like-button ${
-    isLiked ? "card__like-button_is-active" : ""
-  }`;
+ const cardLikeButtonClassName = `element__like ${
+  isLiked ? "element__like_active" : ""
+}`;
 
   const isOwn = currentUser?._id && card?.owner?._id === currentUser._id;
 
@@ -32,15 +32,10 @@ export default function Card({ card, isLiked, handleOpenPopup, onCardDelete, onC
       />
 
       {isOwn && (
-        <button
-          className="icon__trash"
-          type="button"
-          aria-label="Eliminar"
-          onClick={handleDeleteClick}
-        >
-          <img src="/images/Trash.svg" alt="Eliminar" />
-        </button>
-      )}
+  <button className="icon__trash" type="button" onClick={handleDeleteClick}>
+    <img src="/images/Trash.svg" alt="Eliminar" />
+  </button>
+)}
 
       <div className="element__footer">
         <p className="element__name">{card.name}</p>

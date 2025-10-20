@@ -72,7 +72,8 @@ changeLikeCardStatus(cardId, like) {
 }
 
 const api = new Api({
-  baseUrl: "https://around-api.es.tripleten-services.com/v1",
-  headers: { authorization: import.meta.env.VITE_API_TOKEN }
+    baseUrl: "https://around-api.es.tripleten-services.com/v1",
+  headers: { authorization: "937ce67a-bb25-4ecd-8635-136a0a5cf439" }
 });
+
 export default api;
