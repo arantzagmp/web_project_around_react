@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import CurrentUserContext from "../contexts/CurrentUserContext";
+import CurrentUserContext from "../../../../contexts/CurrentUserContext";
 
 export default function Card({ card, isLiked, handleOpenPopup, onCardDelete, onCardLike }) {
   if (!card) return null;
