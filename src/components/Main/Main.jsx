@@ -5,8 +5,8 @@ import ImagePopup from "../Popup/ImagePopup";
 import Card from "../Card";
 
 import NewCardForm from "../Popup/NewCard";
-import EditProfileForm from "../Popup/EditProfile";
-import EditAvatarForm from "../Popup/EditAvatar";
+import EditProfileForm from "../EditProfile";
+import EditAvatarForm from "../EditAvatar";
 
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 
