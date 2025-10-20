@@ -6,7 +6,7 @@ import Card from "../Card";
 
 import NewCardForm from "../Popup/NewCard";
 import EditProfileForm from "../EditProfile";
-import EditAvatarForm from "../EditAvatar";
+import EditAvatarForm from "../EditAvatar/EditAvatar";
 
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 
