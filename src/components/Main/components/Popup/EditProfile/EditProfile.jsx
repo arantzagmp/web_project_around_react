@@ -1,6 +1,5 @@
 import { useState, useContext, useEffect } from "react";
-import CurrentUserContext from "../contexts/CurrentUserContext";
-
+import CurrentUserContext from "../../../../../contexts/CurrentUserContext";
 export default function EditProfileForm() {
   const { currentUser, handleUpdateUser } = useContext(CurrentUserContext);
 

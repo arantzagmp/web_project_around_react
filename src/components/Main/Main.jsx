@@ -5,7 +5,7 @@ import ImagePopup from "./components/Popup/ImagePopup";
 import Card from "./components/Card/Card";
 
 import NewCardForm from "./components/Popup/NewCard";
-import EditProfileForm from "./components/Popup/EditProfile";
+import EditProfileForm from "./components/Popup/EditProfile/EditProfile";
 import EditAvatarForm from "./components/Popup/EditAvatar/EditAvatar";
 
 import CurrentUserContext from "../../contexts/CurrentUserContext";
