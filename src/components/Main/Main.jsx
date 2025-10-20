@@ -1,12 +1,12 @@
 import { useState, useContext } from "react";
 import "../../index.css";
-import Popup from "./Popup/Popup";
-import ImagePopup from "./Popup/ImagePopup";
+import Popup from "../Popup/Popup";
+import ImagePopup from "../Popup/ImagePopup";
 import Card from "../Card";
 
-import NewCardForm from "./Popup/NewCard";
-import EditProfileForm from "./Popup/EditProfileForm";
-import EditAvatarForm from "./Popup/EditAvatarForm";
+import NewCardForm from "../Popup/NewCard";
+import EditProfileForm from "../Popup/EditProfileForm";
+import EditAvatarForm from "../Popup/EditAvatarForm";
 
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 
