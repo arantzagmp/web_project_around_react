@@ -1,16 +1,16 @@
 import { useState, useContext } from "react";
 import "../../index.css";
 import Popup from "./components/Popup/Popup";
-import ImagePopup from "./components/Popup/ImagePopup";
+import ImagePopup from "./components/Popup/ImagePopup/ImagePopup";
 import Card from "./components/Card/Card";
 
-import NewCardForm from "./components/Popup/NewCard";
+import NewCardForm from "./components/Popup/NewCard/NewCard";
 import EditProfileForm from "./components/Popup/EditProfile/EditProfile";
 import EditAvatarForm from "./components/Popup/EditAvatar/EditAvatar";
 
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 
-export function Main({ popup, onOpenPopup, onClosePopup, cards, onCardLike, onCardDelete }) {
+export default function Main({ popup, onOpenPopup, onClosePopup, cards, onCardLike, onCardDelete }) {
   const [selectedCard, setSelectedCard] = useState(null);
   const [isImageOpen, setIsImageOpen] = useState(false);
 
