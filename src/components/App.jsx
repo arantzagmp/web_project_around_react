@@ -6,13 +6,13 @@ import api from "../utils/api";
 import CurrentUserContext from "../contexts/CurrentUserContext";
 
 export default function App() {
-  const [currentUser, setCurrentUser] = useState(null);
+  // Keep currentUser as an object for predictable context shape
+  const [currentUser, setCurrentUser] = useState({});
   const [cards, setCards] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [popup, setPopup] = useState(null);
 
   useEffect(() => {
-    Promise.all([api.getUserInfo(), api.getCardList()])
+    Promise.all([api.getUserInfo(), api.getCards()])
       .then(([user, cardsFromApi]) => {
         setCurrentUser(user);
         setCards(cardsFromApi);
@@ -23,29 +23,19 @@ export default function App() {
       .finally(() => setIsLoading(false));
   }, []);
 
-  const handleOpenPopup = (popupConfig) => setPopup(popupConfig);
-  const handleClosePopup = () => setPopup(null);
-
   const handleUpdateUser = ({ name, about }) => {
     return api
       .setUserInfo({ name, about })
-      .then((updated) => {
-        setCurrentUser(updated);
-        handleClosePopup();
-      });
+      .then((updated) => setCurrentUser(updated));
   };
 
   const handleUpdateAvatar = ({ avatar }) => {
-    return api.setUserAvatar({ avatar }).then((updated) => {
-      setCurrentUser(updated);
-      handleClosePopup();
-    });
+    return api.updateAvatar({ avatar }).then((updated) => setCurrentUser(updated));
   };
 
   const handleAddCard = ({ name, link }) => {
     return api.addCard({ name, link }).then((newCard) => {
       setCards((prev) => [newCard, ...prev]);
-      handleClosePopup();
     });
   };
 
@@ -77,9 +67,6 @@ export default function App() {
         <Header />
         <Main
           isLoading={isLoading}
-          popup={popup}
-          onOpenPopup={handleOpenPopup}
-          onClosePopup={handleClosePopup}
           cards={cards}
           onCardLike={handleCardLike}
           onCardDelete={handleCardDelete}
