@@ -5,6 +5,7 @@ class Api {
   }
 
   _handle(res) {
+    // Some endpoints (e.g. DELETE) may return 204 No Content
     if (res.status === 204) return Promise.resolve({});
 
     if (res.ok) return res.json();
@@ -18,6 +19,7 @@ class Api {
       });
   }
 
+  // --- Users ---
   getUserInfo() {
     return fetch(`${this.baseUrl}/users/me`, {
       headers: this.headers,
@@ -40,6 +42,7 @@ class Api {
     }).then((r) => this._handle(r));
   }
 
+  // --- Cards ---
   getCardList() {
     return fetch(`${this.baseUrl}/cards`, {
       headers: this.headers,
@@ -72,6 +75,7 @@ class Api {
 const BASE_URL = "https://around-api.es.tripleten-services.com/v1/web_project_around_react";
 const AUTH_TOKEN = import.meta.env.VITE_API_TOKEN || "937ce67a-bb25-4ecd-8635-136a0a5cf439";
 
+// Export ONLY the instance (as the instructions require)
 const api = new Api(BASE_URL, {
   authorization: AUTH_TOKEN,
 });
