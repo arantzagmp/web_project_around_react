@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import "../../index.css";
+import "./index.css";
 import Popup from "./components/Popup/Popup";
 import ImagePopup from "./components/Popup/ImagePopup/ImagePopup";
 import Card from "./components/Card/Card";
