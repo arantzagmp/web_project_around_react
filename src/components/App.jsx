@@ -54,15 +54,9 @@ export default function App() {
     });
   };
 
-  const ctx = {
-    currentUser,
-    handleUpdateUser,
-    handleUpdateAvatar,
-    handleAddCard,
-  };
 
   return (
-    <CurrentUserContext.Provider value={ctx}>
+     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
         <Header />
         <Main
