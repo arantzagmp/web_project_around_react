@@ -1,13 +1,9 @@
-@import './vendor/normalize.css';
-@import './vendor/fonts.css';
-
-@import './blocks/page.css';
-@import './blocks/header.css';
-@import './blocks/footer.css';
-@import './blocks/cards.css';
-@import './blocks/profile.css';
-
-@import './blocks/popup.css';
-@import './blocks/popupCreate.css';
-@import './blocks/popupImage.css';
-@import './blocks/PopupWithConfirmation.css';
+@import url('./blocks/header.css');
+@import url('./blocks/footer.css');
+@import url('./blocks/cards.css');
+@import url('./blocks/popup.css');
+@import url('./blocks/popupCreate.css');
+@import url('./blocks/popupImage.css');
+@import url('./blocks/profile.css');
+@import url('./blocks/page.css');
+@import url('./blocks/PopupWithConfirmation.css');
