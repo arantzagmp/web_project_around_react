@@ -6,7 +6,6 @@ import api from "../utils/api";
 import CurrentUserContext from "../contexts/CurrentUserContext";
 
 export default function App() {
-  // Keep currentUser as an object for predictable context shape
   const [currentUser, setCurrentUser] = useState({});
   const [cards, setCards] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -56,7 +55,7 @@ export default function App() {
 
 
   return (
-     <CurrentUserContext.Provider value={currentUser}>
+    <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
         <Header />
         <Main
@@ -66,7 +65,7 @@ export default function App() {
           onCardDelete={handleCardDelete}
         />
         <Footer />
-      </div>
+     </div>
     </CurrentUserContext.Provider>
   );
 }
