@@ -21,7 +21,8 @@ export default function Main({ popup, onOpenPopup, onClosePopup, cards, onCardLi
   const editAvatarPopup = { title: "Cambiar foto de perfil", children: <EditAvatarForm /> };
 
   function handleOpenImage(card) {
-    const imageObj = card.image ? card : { name: card.name, image: card.link, id: card._id };
+  
+    const imageObj = card.link ? card : { name: card.name, link: card.image, _id: card.id };
     setSelectedCard(imageObj);
     setIsImageOpen(true);
   }
