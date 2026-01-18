@@ -5,7 +5,7 @@ import ImagePopup from "./components/Popup/ImagePopup/ImagePopup";
 import Card from "./components/Card/Card";
 
 import NewCardForm from "./components/Popup/NewCard/NewCard";
-import EditProfileForm from "./components/Popup/EditProfile/EditProfile";
+import EditProfile from "./components/Popup/EditProfile/EditProfile";
 import EditAvatarForm from "./components/Popup/EditAvatar/EditAvatar";
 
 import CurrentUserContext from "../../contexts/CurrentUserContext";
@@ -17,7 +17,7 @@ export default function Main({ popup, onOpenPopup, onClosePopup, cards, onCardLi
   const { currentUser } = useContext(CurrentUserContext);
 
   const newCardPopup = { title: "Nuevo lugar", children: <NewCardForm /> };
-  const editProfilePopup = { title: "Editar perfil", children: <EditProfileForm /> };
+  const editProfilePopup = { title: "Editar perfil", children: <EditProfile /> };
   const editAvatarPopup = { title: "Cambiar foto de perfil", children: <EditAvatarForm /> };
 
   function handleOpenImage(card) {
