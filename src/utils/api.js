@@ -62,14 +62,9 @@ class Api {
     }).then((r) => this._handle(r));
   }
 }
-
-const BASE_URL = "https://around.nomoreparties.co/v1/web_es_01";
-
-const AUTH_TOKEN =
-  import.meta.env.VITE_API_TOKEN || "937ce67a-bb25-4ecd-8635-136a0a5cf439";
-
-const api = new Api(BASE_URL, {
-  authorization: AUTH_TOKEN,
+const api = new Api({
+  baseUrl: "https:around-api.es.tripleten-services.com/v1",
+  headers: {autorization: "937ce67a-bb25-4ecd-8635-136a0a5cf439"}
 });
 
 export default api;
