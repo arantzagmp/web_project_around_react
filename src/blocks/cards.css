@@ -1,28 +1,41 @@
-.element__like { 
-  opacity: .35;
-  filter: grayscale(1);
-  transition: opacity .2s ease, transform .15s ease, filter .2s ease;
+.element__description {
+  display: flex;
+  align-items: center;
+  gap: 10px;              
+  padding: 1rem 1.25rem;  
 }
 
-.element__like:hover {
-  opacity: 0.5;
+.element__title {
+  margin: 0;
+  flex: 1;                
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
-.element__like.element__like_active {
-  opacity: 1;
-  filter: none;
-  transform: scale(1.03);
+
+.element__like {
+  width: 21px;
+  height: 19px;
+  flex: 0 0 auto;
+  background-image: url(/public/images/heart.svg);
+border: none;
+background-color: transparent;
+}
+.element__like_active {
+  background-image: url(/public/images/heart_active.svg);
+}
+.element__trash{
+top: 2rem;
+right: 2rem;
+width: 1.125rem;
+height: 1.1875rem;
+position: absolute;
+background-image: url(/public/images/Trash.svg);
+border: none;
+background-color: transparent;
 }
 
 @media screen and (min-width: 769px) {
-  .icon__trash{
-width: 1.125rem;
-height: 1.1875rem;
-left: 15rem;
-top: 1.25rem;
-position: absolute;
-background: none;
-border: none;
-}
 
 .elements {
   display: grid;
@@ -88,11 +101,11 @@ grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   position: relative
 }
 .element__image {
-  width: 17.625rem;
-  height: 18.08331rem;
-  align-self: stretch;
-  aspect-ratio: 289.33/289.33;
-  border-radius: 0.625rem 0.625rem 0rem 0rem;
+width: 100%;
+  height: 282px;      
+  object-fit: cover; 
+  display: block;
+  border-radius: 10px 10px 0 0;
 }
 .element__footer {
   display: flex;
@@ -111,13 +124,4 @@ grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-}
-.icon__trash{
-top: 2rem;
-right: 2rem;
-width: 1.125rem;
-height: 1.1875rem;
-position: absolute;
-background: none;
-border: none;
 }

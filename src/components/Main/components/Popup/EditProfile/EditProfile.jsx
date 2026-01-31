@@ -20,7 +20,8 @@ export default function EditProfile() {
 
   return (
     <form className="popup__form" name="profile-form" id="edit-profile-form" noValidate onSubmit={handleSubmit}>
-      <label className="popup__label">
+      <h2 className="popup__title">Editar Perfil</h2>
+      <label className="popup__field">
         <input
           className="popup__input popup__input_type_name"
           id="owner-name"
@@ -33,10 +34,11 @@ export default function EditProfile() {
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
+        <div className="popup__input-line" />
         <span className="popup__error" id="owner-name-error"></span>
       </label>
 
-      <label className="popup__label">
+      <label className="popup__field">
         <input
           className="popup__input popup__input_type_description"
           id="owner-description"
@@ -49,11 +51,12 @@ export default function EditProfile() {
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
+        <div className="popup__input-line" />
         <span className="popup__error" id="owner-description-error"></span>
       </label>
 
-      <button className="button popup__button" type="submit">
-        Save
+      <button className="popup__submit-button" type="submit">
+        <span className="popup__submit-button-text">Guardar</span>
       </button>
     </form>
   );

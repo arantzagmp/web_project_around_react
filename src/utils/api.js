@@ -1,5 +1,5 @@
 class Api {
-  constructor(baseUrl, headers = {}) {
+  constructor({ baseUrl, headers }) {
     this.baseUrl = baseUrl;
     this.headers = headers;
   }
@@ -54,17 +54,19 @@ class Api {
       headers: this.headers,
     }).then((r) => this._handle(r));
   }
-
-  changeLikeCardStatus(cardId, like) {
-    return fetch(`${this.baseUrl}/cards/likes/${cardId}`, {
+ changeLikeCardStatus(cardId, like) {
+    return fetch(`${this.baseUrl}/cards/${cardId}/likes`, {
       method: like ? "PUT" : "DELETE",
       headers: this.headers,
     }).then((r) => this._handle(r));
   }
 }
 const api = new Api({
-  baseUrl: "https:around-api.es.tripleten-services.com/v1",
-  headers: {autorization: "937ce67a-bb25-4ecd-8635-136a0a5cf439"}
+  baseUrl: "https://around-api.es.tripleten-services.com/v1",
+  headers: {
+    authorization: "937ce67a-bb25-4ecd-8635-136a0a5cf439",
+  },
 });
+
 
 export default api;

@@ -1,4 +1,4 @@
-export default function Popup({ onClose, title, children, isOpen = false }) {
+export default function Popup({ onClose, children, isOpen = false }) {
   return (
     <div
       className={`popup ${isOpen ? "popup__opened" : ""}`}
@@ -15,8 +15,6 @@ export default function Popup({ onClose, title, children, isOpen = false }) {
         >
           <img src="/images/close-icon.svg" alt="Cerrar" className="popup__close-icon" />
         </button>
-
-        <h3 id="popup-title" className="popup__title">{title}</h3>
         {children}
       </div>
     </div>

@@ -1,18 +1,30 @@
-import React from "react";
-
 export default function ImagePopup({ isOpen, card, onClose }) {
-  if (!isOpen || !card) return null;
   return (
-    <div className={`popupImage ${isOpen ? "popupImage_opened" : ""}`} role="dialog" aria-modal="true">
+    <div
+      className={`popupImage ${isOpen ? "popupImage__opened" : ""}`}
+      role="dialog"
+      aria-modal="true"
+    >
       <div className="popupImage__container">
-        <img className="popupImage__image" src={card.link} alt={card.name || "Imagen"} />
-        <p className="popupImage__caption">{card.name}</p>
-        <button
-          className="popupImage__close-button"
-          type="button"
-          aria-label="Cerrar"
-          onClick={onClose}
-        />
+        <div className="popupImage__frame">
+          {card && (
+            <img
+              className="popupImage__image"
+              src={card.link}
+              alt={card.name || "Imagen"}
+            />
+          )}
+
+          <button
+            className="popupImage__close-button"
+            type="button"
+            aria-label="Cerrar"
+            onClick={onClose}
+          >
+            <img src="/images/close-icon.svg" alt="" />
+          </button>
+        </div>
+        <p className="popupImage__caption">{card?.name || ""}</p>
       </div>
     </div>
   );

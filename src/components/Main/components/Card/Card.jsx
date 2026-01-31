@@ -1,57 +1,43 @@
 import { useContext } from "react";
 import CurrentUserContext from "../../../../contexts/CurrentUserContext";
 
-export default function Card({ card, isLiked, handleOpenPopup, onCardDelete, onCardLike }) {
-  if (!card) return null;
-
+export default function Card({ card, onCardLike, onCardDelete, handleOpenPopup }) {
   const { currentUser } = useContext(CurrentUserContext);
 
-  const imageComponent = { id: card._id, name: card.name, image: card.link };
+  const isLiked = card.likes?.some((u) => u._id === currentUser?._id);
 
- const cardLikeButtonClassName = `element__like ${
-  isLiked ? "element__like_active" : ""
-}`;
+  const ownerId = typeof card.owner === "string" ? card.owner : card.owner?._id;
+  const isOwn = ownerId === currentUser?._id;
 
-  const isOwn = currentUser?._id && card?.owner?._id === currentUser._id;
-
-  function handleLikeClick() {
-    onCardLike?.(card);
-  }
-
-  function handleDeleteClick() {
-    onCardDelete?.(card);
-  }
+  const likeButtonClassName = `element__like ${isLiked ? "element__like_active" : ""}`;
+  const deleteButtonClassName = `element__trash ${isOwn ? "" : "element__trash_hidden"}`;
 
   return (
-    <div className="element">
+    <li className="element">
+      <button
+        className={deleteButtonClassName}
+        type="button"
+        aria-label="Delete"
+        onClick={() => onCardDelete(card)}
+      />
+
       <img
         className="element__image"
         src={card.link}
         alt={card.name}
-        onClick={() => handleOpenPopup(imageComponent)}
+        onClick={() => handleOpenPopup(card)}
       />
 
-      {isOwn && (
-  <button className="icon__trash" type="button" onClick={handleDeleteClick}>
-    <img src="/images/Trash.svg" alt="Eliminar" />
-  </button>
-)}
+      <div className="element__description">
+        <h2 className="element__title">{card.name}</h2>
 
-      <div className="element__footer">
-        <p className="element__name">{card.name}</p>
         <button
-          className={cardLikeButtonClassName}
+          className={likeButtonClassName}
           type="button"
-          aria-label="Me gusta"
-          aria-pressed={isLiked}
-          onClick={handleLikeClick}
-        >
-          <img src="/images/heart.svg" alt="corazón" />
-        </button>
-        <span className="element__like-count">{card.likes?.length ?? 0}</span>
+          aria-label="Like"
+          onClick={() => onCardLike(card)}
+        />
       </div>
-    </div>
+    </li>
   );
 }
-
-
